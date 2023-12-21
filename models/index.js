@@ -1,4 +1,5 @@
 // import models
+const sequelize = require('../config/connection');
 const Product = require('./Product');
 const Category = require('./Category');
 const Tag = require('./Tag');
@@ -15,11 +16,19 @@ Category.hasMany(Product, {
 })
 // Products belongToMany Tags (through ProductTag)
 Product.belongsToMany(Tag, {
-  foreignKey: 'product_id',
+  through:{
+    model: ProductTag,
+    unique: false,
+    },
+    as: 'productToTag'
 })
 // Tags belongToMany Products (through ProductTag)
-TimeRanges.belongsTo(Product, {
-  foreignKey: 'product_id',
+Tag.belongsToMany(Product, {
+  through:{
+    model: ProductTag,
+    unique: false,
+    },
+    as: 'tagToProduct'
 })
 
 module.exports = {
