@@ -1,3 +1,4 @@
+//Import needed libraries and models
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
@@ -5,21 +6,22 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // get all products
 router.get('/', async (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
+  //Try to get the products, including their categories (direct connection)
+  //and their tags (connection through the ProductTag association)
   try{
     const productData = await Product.findAll({
-      include: [{model: Category}, 
-        {model: Tag, through: ProductTag, as: 'productToTag'}],
+      include: [{model: Category, 
+        model: Tag, through: ProductTag, as: 'productToTag'}],
     });
-    
+    //If there is no product found, note this to the user
     if(!productData){
       res.status(404).json({ message: 'No entry found with this id!' });
       return;
     }
-    
+    //If a product is found, return the data
     res.status(200).json(productData);
   }
+  //If an error occurs, log it as a server error
   catch(err){
     res.status(500).json(err);
   }
@@ -27,21 +29,22 @@ router.get('/', async (req, res) => {
 
 // get one product
 router.get('/:id', async (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  //Try to get the product by its ID, including its categories (direct connection)
+  //and its tags (connection through the ProductTag association)
   try{
     const productData = await Product.findByPk(req.params.id, {
-      include: [{model: Category}, 
-        {model: Tag, through: ProductTag, as: 'productToTag'}],
+      include: [{model: Category, 
+        model: Tag, through: ProductTag, as: 'productToTag'}],
     });
-    
+    //If a product is found, return the data
     if(!productData){
       res.status(404).json({ message: 'No entry found with this id!' });
       return;
     }
-    
+    //If an error occurs, log it as a server error
     res.status(200).json(productData);
   }
+  //If an error occurs, log it as a server error
   catch(err){
     res.status(500).json(err);
   }
@@ -64,7 +67,7 @@ router.post('/', (req, res) => {
         const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
             product_id: product.id,
-            tag_id,
+            tag_id
           };
         });
         return ProductTag.bulkCreate(productTagIdArr);
@@ -126,6 +129,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
+  // Attempt to get the product by its ID, then delete it
   try{
     const brokeProduct = await Product.destroy({
     where: {
@@ -134,6 +138,7 @@ router.delete('/:id', async (req, res) => {
     });
     return brokeProduct.json(deletedProduct);
   }
+  //If an error occurs, log it as a server error
   catch(err){
     res.status(500).json(err);
   }

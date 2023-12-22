@@ -1,9 +1,11 @@
+//Import libraries
 const { Model, DataTypes } = require('sequelize');
-
 const sequelize = require('../config/connection');
 
+//Create the ProductTag module
 class ProductTag extends Model {}
 
+//Define attributes for the ProductTag module
 ProductTag.init(
   {
     id:{
