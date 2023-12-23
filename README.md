@@ -1,8 +1,10 @@
 # E-commerce-backend
-This is a demonstration of how to make a backend app that handles route requests to a SQL database
+This is a demonstration of how to make a backend app that handles route requests to a SQL database.
 
 ## Description
+This project really helped me understand how to properly make model associations using sequelize. One-to-One associations are fairly straight forward, but this project required Many-to-Many interactions. That added in complexity, which was addressed by using the "through" keyword and the "belongsToMany" method. I found it very interesting that "through" would allow sequelize to produce a new model (that I call a 'junction' model like SQL's 'through tables') that facilitates the connectivity of the joined models.  
 
+These model associations also allowed me to practice a new way to implement routes in my api folder. Pulling data from a SQL database can generally be done with a ".findAll" or a ".findByPk()". However, if I wanted to grab data beyond the current table, I needed to call more so the request would trace its way through the SQL tables to collect all the data needed. As it was possible to search for non-existent data, it become very important for me to use try-catch statements to inform the user that they were querying for data that did not exist instead of just crashing the program. 
 
 ## Installation
 This project requires the following packages to function:
@@ -18,11 +20,11 @@ The user must also have a .env file with their SQL credentials stored for the pr
 Once installed, the user needs to start their npm server with the command '''npm start''. Then the user can use Insomnia [https://insomnia.rest/](https://insomnia.rest/) to test the routes in this project. 
 
 The following GIFs show this programs capabilities.
-1) ![Category Routes Demo Gif]() 
-2) ![Tag Routes Demo Gif]() 
-3) ![Product Routes Demo Gif]() 
+1) ![Category Routes Demo Gif](./assets/category-route.gif) 
+2) ![Tag Routes Demo Gif](./assets/tag-route.gif) 
+3) ![Product Routes Demo Gif](./assets/product-route.gif) 
 <br>
-A video walkthrough of the proper commands and their output can be found <a href=""> here</a>.
+A video walkthrough of the proper commands and their output can be found <a href="./assets/E-commerce-backend.mp4"> here</a>.
 
 ## License
 This product is protected by a [MIT License](http://choosealicense.com/licenses/mit).
