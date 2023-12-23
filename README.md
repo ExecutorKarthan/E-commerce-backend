@@ -20,9 +20,16 @@ The user must also have a .env file with their SQL credentials stored for the pr
 Once installed, the user needs to start their npm server with the command '''npm start''. Then the user can use Insomnia [https://insomnia.rest/](https://insomnia.rest/) to test the routes in this project. 
 
 The following GIFs show this programs capabilities.
-1) Category Routes Demo![Category Routes Demo Gif](./assets/category-route.gif) 
-2) Tag Routes Demo ![Tag Routes Demo Gif](./assets/tag-route.gif) 
-3) Product Routes Demo![Product Routes Demo Gif](./assets/product-route.gif) 
+1) Category Routes Demo
+<br>
+![Category Routes Demo Gif](./assets/category-route.gif)
+<br> 
+2) Tag Routes Demo 
+<br>
+![Tag Routes Demo Gif](./assets/tag-route.gif)
+3) Product Routes Demo
+<br>
+![Product Routes Demo Gif](./assets/product-route.gif) 
 <br>
 A video walkthrough of the proper commands and their output can be found <a href="./assets/E-commerce-backend.mp4"> here</a>.
 
