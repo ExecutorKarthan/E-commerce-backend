@@ -21,16 +21,17 @@ Once installed, the user needs to start their npm server with the command '''npm
 
 The following GIFs show this programs capabilities.
 1) Category Routes Demo
-<br>
+'<br>'
 ![Category Routes Demo Gif](./assets/category-route.gif)
-<br> 
+'<br>'
 2) Tag Routes Demo 
-<br>
+'<br>'
 ![Tag Routes Demo Gif](./assets/tag-route.gif)
+'<br>'
 3) Product Routes Demo
-<br>
+'<br>'
 ![Product Routes Demo Gif](./assets/product-route.gif) 
-<br>
+'<br>'
 A video walkthrough of the proper commands and their output can be found <a href="./assets/E-commerce-backend.mp4"> here</a>.
 
 ## License
