@@ -131,17 +131,19 @@ router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
   // Attempt to get the product by its ID, then delete it
   try{
-    const brokeProduct = await Product.destroy({
+    await Product.destroy({
     where: {
       id: req.params.id,
     }
-    });
-    return brokeProduct.json(deletedProduct);
+    }).then(returnProducts =>{
+      return res.json(returnProducts);
+    })
+    
   }
   //If an error occurs, log it as a server error
   catch(err){
     res.status(500).json(err);
   }
-});
+  });
 
 module.exports = router;

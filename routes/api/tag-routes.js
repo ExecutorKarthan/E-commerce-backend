@@ -80,17 +80,19 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   // Attempt to get the tag by its ID, then delete it
   try{
-    const brokeTag = await Tag.destroy({
+    await Tag.destroy({
     where: {
       id: req.params.id,
     }
-    });
-    return brokeTag.json(deletedTag);
+    }).then(returnTags =>{
+      return res.json(returnTags);
+    })
+    
   }
   //If an error occurs, log it as a server error
   catch(err){
     res.status(500).json(err);
   }
-});
+  });
 
 module.exports = router;

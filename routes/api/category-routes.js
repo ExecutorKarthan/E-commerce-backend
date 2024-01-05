@@ -84,17 +84,19 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   // Attempt to get the category by its ID, then delete it
   try{
-    const brokeCat = await Category.destroy({
+    await Category.destroy({
     where: {
       id: req.params.id,
     }
-    });
-    return brokeCat.json(deletedCategory);
+    }).then(returnCategories =>{
+      return res.json(returnCategories);
+    })
+    
   }
   //If an error occurs, log it as a server error
   catch(err){
     res.status(500).json(err);
   }
-});
-
-module.exports = router;
+  });
+  
+  module.exports = router;
